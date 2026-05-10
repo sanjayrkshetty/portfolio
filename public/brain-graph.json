@@ -1,0 +1,34 @@
+{
+  "links": [
+    {
+      "source": "Welcome",
+      "target": "create a link"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "Get Your Shit Together",
+      "group": "root"
+    },
+    {
+      "id": "Task",
+      "group": "root"
+    },
+    {
+      "id": "Untitled 1",
+      "group": "root"
+    },
+    {
+      "id": "Untitled",
+      "group": "root"
+    },
+    {
+      "id": "Welcome",
+      "group": "root"
+    },
+    {
+      "id": "Untitled",
+      "group": "journal"
+    }
+  ]
+}

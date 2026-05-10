@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import BrainGraph from "@/components/BrainGraph";
 import AskMe from "@/components/AskMe";
 import Footer from "@/components/Footer";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <BrainGraph />
       <AskMe />
       <Footer />
     </>
