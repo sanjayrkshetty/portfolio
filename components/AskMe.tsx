@@ -11,9 +11,8 @@ const SUGGESTIONS = [
 ];
 
 const PROVIDERS = [
-  { id: "groq",       label: "Groq",   sub: "Llama 3.3 · Free · 300 tok/s", color: "#f97316" },
-  { id: "claude",     label: "Claude", sub: "Haiku · Fast · Reliable",        color: "#d4a843" },
-  { id: "openrouter", label: "OpenRouter", sub: "Llama free · Fallback",      color: "#a78bfa" },
+  { id: "groq",       label: "Groq",        sub: "Llama 3.3 · Free · 300 tok/s", color: "#f97316" },
+  { id: "openrouter", label: "OpenRouter",  sub: "Llama 3.3 · Free · Fallback",  color: "#a78bfa" },
 ];
 
 function getTextFromMessage(msg: { parts: Array<{ type: string; text?: string }> }) {
