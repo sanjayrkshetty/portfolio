@@ -128,16 +128,7 @@ export default function Hero() {
           maxWidth: "580px",
           margin: "0 auto 40px",
         }}>
-          AI Researcher at{" "}
-          <a
-            href="https://www.sisainfosecurity.com"
-            target="_blank"
-            rel="noopener"
-            style={{ color: "var(--text)", textDecoration: "underline", textDecorationColor: "var(--border2)", textUnderlineOffset: "3px" }}
-          >
-            SISA Information Security
-          </a>
-          .{" "}
+          AI Researcher at SISA Information Security.{" "}
           B.Tech Cybersecurity, MIT Bengaluru &apos;26.
           Building threat models for AI systems and automating security consulting.
         </p>
