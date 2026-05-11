@@ -4,8 +4,15 @@ import { useEffect, useState } from "react";
 const ROLES = [
   "AI Security Researcher",
   "LLM Threat Modeller",
+  "Adversarial ML Engineer",
   "Pre-Sales Consultant",
-  "Adversarial ML Researcher",
+];
+
+const STATS = [
+  { value: "3+", label: "years in cybersec" },
+  { value: "6", label: "BU domains" },
+  { value: "22", label: "services shipped" },
+  { value: "∞", label: "problems to solve" },
 ];
 
 export default function Hero() {
@@ -16,15 +23,15 @@ export default function Hero() {
   useEffect(() => {
     const target = ROLES[roleIdx];
     if (!deleting && displayed.length < target.length) {
-      const t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 60);
+      const t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 58);
       return () => clearTimeout(t);
     }
     if (!deleting && displayed.length === target.length) {
-      const t = setTimeout(() => setDeleting(true), 2200);
+      const t = setTimeout(() => setDeleting(true), 2400);
       return () => clearTimeout(t);
     }
     if (deleting && displayed.length > 0) {
-      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
+      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 32);
       return () => clearTimeout(t);
     }
     if (deleting && displayed.length === 0) {
@@ -35,111 +42,151 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       style={{
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "0 24px",
+        padding: "0 28px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* background grid */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          opacity: 0.3,
-        }}
-      />
-      {/* radial glow */}
-      <div
-        style={{
-          position: "absolute",
-          top: "40%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "600px",
-          height: "600px",
-          background: "radial-gradient(circle, rgba(46,116,181,0.12) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
+      {/* Animated grid */}
+      <div className="grid-bg" />
 
-      <div style={{ position: "relative", maxWidth: "760px", textAlign: "center" }}>
-        <div className="fade-up" style={{ marginBottom: "16px" }}>
-          <span className="badge">Available for collaboration</span>
+      {/* Radial glow blobs */}
+      <div style={{
+        position: "absolute", top: "30%", left: "15%",
+        width: "500px", height: "500px", borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(0,255,136,0.055) 0%, transparent 65%)",
+        pointerEvents: "none", filter: "blur(20px)",
+      }} />
+      <div style={{
+        position: "absolute", bottom: "20%", right: "10%",
+        width: "380px", height: "380px", borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 65%)",
+        pointerEvents: "none", filter: "blur(30px)",
+      }} />
+
+      <div style={{ position: "relative", maxWidth: "820px", width: "100%", textAlign: "center" }}>
+
+        {/* Status badge */}
+        <div className="fade-up" style={{ marginBottom: "24px", display: "flex", justifyContent: "center" }}>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            padding: "6px 14px", borderRadius: "9999px",
+            background: "rgba(0,255,136,0.06)", border: "1px solid rgba(0,255,136,0.18)",
+            fontSize: "0.75rem", fontFamily: "'JetBrains Mono', monospace",
+            color: "var(--accent)", letterSpacing: "0.04em",
+          }}>
+            <span className="glow-dot" />
+            Open to research collaborations
+          </span>
         </div>
 
-        <h1
-          className="fade-up-1"
-          style={{
-            fontSize: "clamp(2.4rem, 7vw, 4.5rem)",
-            fontWeight: 800,
-            letterSpacing: "-0.04em",
-            lineHeight: 1.05,
-            marginBottom: "20px",
-          }}
-        >
-          Sanjay R K{" "}
-          <span className="gradient-text">Shetty</span>
+        {/* Main headline */}
+        <h1 className="fade-up-1" style={{
+          fontSize: "clamp(2.6rem, 8vw, 5.2rem)",
+          fontWeight: 800,
+          letterSpacing: "-0.04em",
+          lineHeight: 1.04,
+          marginBottom: "4px",
+        }}>
+          I build things
+        </h1>
+        <h1 className="fade-up-2" style={{
+          fontSize: "clamp(2.6rem, 8vw, 5.2rem)",
+          fontWeight: 800,
+          letterSpacing: "-0.04em",
+          lineHeight: 1.04,
+          marginBottom: "28px",
+        }}>
+          that <span className="gradient-text">think.</span>
         </h1>
 
-        <div
-          className="fade-up-2"
-          style={{
-            fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
-            color: "var(--muted)",
-            marginBottom: "28px",
-            minHeight: "2rem",
-            fontWeight: 400,
-          }}
-        >
-          <span style={{ color: "var(--accent-light)", fontWeight: 600 }}>
-            {displayed}
-          </span>
-          <span style={{ color: "var(--accent-light)", animation: "blink 1s infinite" }}>|</span>
-          <style>{`@keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }`}</style>
+        {/* Typewriter role */}
+        <div className="fade-up-2" style={{
+          fontSize: "clamp(1rem, 2.5vw, 1.35rem)",
+          color: "var(--muted)",
+          marginBottom: "20px",
+          minHeight: "2rem",
+          fontFamily: "'JetBrains Mono', monospace",
+          fontWeight: 400,
+        }}>
+          <span style={{ color: "var(--accent)", fontWeight: 500 }}>{">"} </span>
+          <span style={{ color: "var(--text)" }}>{displayed}</span>
+          <span style={{ color: "var(--accent)", animation: "blink 1s infinite" }}>_</span>
         </div>
 
-        <p
-          className="fade-up-3"
-          style={{
-            fontSize: "1rem",
-            color: "var(--muted)",
-            lineHeight: 1.7,
-            maxWidth: "560px",
-            margin: "0 auto 36px",
-          }}
-        >
+        {/* Description */}
+        <p className="fade-up-3" style={{
+          fontSize: "0.975rem",
+          color: "var(--muted)",
+          lineHeight: 1.75,
+          maxWidth: "580px",
+          margin: "0 auto 40px",
+        }}>
           AI Researcher at{" "}
           <a
             href="https://www.sisainfosecurity.com"
             target="_blank"
             rel="noopener"
-            style={{ color: "var(--text)", textDecoration: "underline", textDecorationColor: "var(--border)" }}
+            style={{ color: "var(--text)", textDecoration: "underline", textDecorationColor: "var(--border2)", textUnderlineOffset: "3px" }}
           >
             SISA Information Security
           </a>
-          . B.Tech Cybersecurity, MIT Bengaluru &apos;26. I build threat models
-          for AI systems and automate security consulting workflows.
+          .{" "}
+          B.Tech Cybersecurity, MIT Bengaluru &apos;26.
+          Building threat models for AI systems and automating security consulting.
         </p>
 
-        <div className="fade-up-3" style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a className="btn-primary" href="#projects">View Work</a>
+        {/* CTA buttons */}
+        <div className="fade-up-3" style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginBottom: "64px" }}>
+          <a className="btn-primary" href="#projects">View Work ↓</a>
           <a className="btn-ghost" href="#ask">Ask Me Anything</a>
-          <a
-            className="btn-ghost"
-            href="https://linkedin.com/in/sanjay-r-k-shetty-1048ba245"
-            target="_blank"
-            rel="noopener"
-          >
-            LinkedIn ↗
+          <a className="btn-ghost" href="https://github.com/sanjayrkshetty" target="_blank" rel="noopener">
+            GitHub ↗
           </a>
+        </div>
+
+        {/* Stats row */}
+        <div className="fade-up-4" style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "1px",
+          background: "var(--border)",
+          borderRadius: "14px",
+          overflow: "hidden",
+          border: "1px solid var(--border)",
+        }}>
+          {STATS.map((s) => (
+            <div key={s.label} style={{
+              background: "var(--surface)",
+              padding: "20px 16px",
+              textAlign: "center",
+            }}>
+              <div style={{
+                fontSize: "clamp(1.4rem, 3vw, 2rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                color: "var(--accent)",
+                lineHeight: 1,
+                marginBottom: "4px",
+              }}>
+                {s.value}
+              </div>
+              <div style={{
+                fontSize: "0.7rem",
+                color: "var(--muted)",
+                fontFamily: "'JetBrains Mono', monospace",
+                letterSpacing: "0.04em",
+              }}>
+                {s.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
