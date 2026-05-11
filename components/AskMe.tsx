@@ -204,7 +204,7 @@ export default function AskMe() {
         </div>
 
         <p style={{ marginTop: "10px", fontSize: "0.72rem", color: "var(--muted)" }}>
-          Chain: Groq (primary, free) → Claude Haiku (fallback) → OpenRouter (last resort) · Edge Runtime
+          Chain: Groq (primary, free) → OpenRouter (fallback, free) · Vercel Edge Runtime · auto-failover
         </p>
       </div>
     </section>
