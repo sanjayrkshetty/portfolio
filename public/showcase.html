@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sanjayrkshetty — Project Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f12;
+    --surface: #141618;
+    --surface2: #1a1d21;
+    --border: #2a2d33;
+    --border2: #3a3d45;
+    --text: #e8eaed;
+    --muted: #6b7280;
+    --dim: #9ca3af;
+    --green: #00d97e;
+    --green-dim: #00d97e22;
+    --cyan: #22d3ee;
+    --cyan-dim: #22d3ee18;
+    --purple: #a78bfa;
+    --purple-dim: #a78bfa18;
+    --amber: #fbbf24;
+    --amber-dim: #fbbf2418;
+    --red: #f87171;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* INTRO SCREEN */
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #intro.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .intro-logo {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--green);
+  }
+  .intro-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .intro-bar {
+    width: 200px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+  .intro-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    animation: loadBar 1.8s ease forwards;
+    animation-delay: 0.3s;
+  }
+  @keyframes loadBar { to { width: 100%; } }
+
+  /* MAIN LAYOUT */
+  #main { opacity: 0; transition: opacity 0.6s ease; }
+  #main.visible { opacity: 1; }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13,15,18,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .header-brand::before {
+    content: '>';
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+  .header-nav {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .header-nav li { cursor: pointer; transition: color 0.2s; }
+  .header-nav li:hover { color: var(--text); }
+  .header-nav li.active { color: var(--green); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-eyebrow::before { content: '//'; color: var(--muted); }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title span { color: var(--green); }
+  .hero-desc {
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    border: 1px solid;
+  }
+  .tag-green { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+  .tag-cyan { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+  .tag-purple { border-color: var(--purple); color: var(--purple); background: var(--purple-dim); }
+  .tag-amber { border-color: var(--amber); color: var(--amber); background: var(--amber-dim); }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PROJECT CARDS */
+  .projects-section {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .project-card.visible { opacity: 1; transform: translateY(0); }
+
+  .card-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+  }
+  .card-title-wrap { display: flex; align-items: center; gap: 0.75rem; }
+  .card-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot-cyan { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+  .dot-purple { background: var(--purple); box-shadow: 0 0 6px var(--purple); }
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .card-repo {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .card-badge {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+  .card-badge.cyan { background: var(--cyan-dim); color: var(--cyan); border-color: var(--cyan); }
+  .card-badge.purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+
+  .card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface2);
+  }
+
+  /* TERMINAL PANEL */
+  .terminal-panel {
+    border-right: 1px solid var(--border);
+    padding: 1.25rem;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+  .t-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .t-dot-red { background: #ff5f57; }
+  .t-dot-yellow { background: #febc2e; }
+  .t-dot-green { background: #28c840; }
+  .t-title { font-size: 0.6rem; color: var(--muted); margin-left: auto; letter-spacing: 0.1em; }
+
+  .terminal {
+    font-size: 0.72rem;
+    line-height: 1.8;
+    min-height: 180px;
+  }
+  .t-prompt { color: var(--green); }
+  .t-cmd { color: var(--text); }
+  .t-comment { color: var(--muted); }
+  .t-output { color: var(--dim); }
+  .t-success { color: var(--green); }
+  .t-error { color: var(--red); }
+  .t-info { color: var(--cyan); }
+  .t-highlight { color: var(--amber); }
+  .t-line {
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .cursor-blink {
+    display: inline-block;
+    width: 7px;
+    height: 12px;
+    background: var(--green);
+    vertical-align: -2px;
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* OUTPUT PANEL */
+  .output-panel { padding: 1.25rem; }
+  .output-title {
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .output-title::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* PROPOSAL OUTPUT */
+  .proposal-output {
+    font-size: 0.68rem;
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .proposal-output.visible { opacity: 1; }
+  .prop-section {
+    border-left: 2px solid var(--green);
+    padding-left: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .prop-section.cyan { border-color: var(--cyan); }
+  .prop-section.purple { border-color: var(--purple); }
+  .prop-label { color: var(--muted); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .prop-value { color: var(--text); margin-top: 0.15rem; }
+  .prop-tag {
+    display: inline-block;
+    font-size: 0.58rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    margin: 0.1rem 0.15rem 0 0;
+  }
+
+  /* PORTFOLIO PREVIEW */
+  .portfolio-preview {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: 0.68rem;
+  }
+  .portfolio-preview.visible { opacity: 1; }
+  .port-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .port-stat:last-child { border-bottom: none; }
+  .port-stat-label { color: var(--dim); }
+  .port-stat-value { color: var(--cyan); font-weight: 600; }
+  .port-route {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+  }
+  .method-badge {
+    font-size: 0.55rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+  .method-get { background: var(--green-dim); color: var(--green); }
+  .method-post { background: var(--cyan-dim); color: var(--cyan); }
+
+  /* BEST PRACTICES PREVIEW */
+  .best-preview {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: 0.68rem;
+  }
+  .best-preview.visible { opacity: 1; }
+  .best-rule {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .best-rule-num {
+    color: var(--purple);
+    font-size: 0.6rem;
+    font-weight: 700;
+    min-width: 18px;
+    padding-top: 0.05rem;
+  }
+  .best-rule-text { color: var(--dim); line-height: 1.5; }
+  .best-rule-text code {
+    color: var(--amber);
+    background: var(--amber-dim);
+    padding: 0 0.3rem;
+    border-radius: 2px;
+    font-size: 0.62rem;
+  }
+
+  /* METRICS ROW */
+  .metrics-row {
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    gap: 2rem;
+    background: var(--surface);
+  }
+  .metric { display: flex; flex-direction: column; }
+  .metric-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .metric-lbl {
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+  .metric-val.green { color: var(--green); }
+  .metric-val.cyan { color: var(--cyan); }
+  .metric-val.purple { color: var(--purple); }
+
+  /* FOOTER */
+  footer {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--green);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .footer-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--muted);
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--green);
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* CURSOR DOT */
+  .cursor-dot {
+    position: fixed;
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 300;
+    transition: transform 0.15s ease, opacity 0.15s;
+    box-shadow: 0 0 8px var(--green);
+    opacity: 0;
+  }
+
+  /* GRID DOTS BACKGROUND */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(circle, #2a2d3328 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+  }
+
+  #main > * { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <div class="intro-logo">sanjayrkshetty</div>
+  <div class="intro-sub">Loading project showcase</div>
+  <div class="intro-bar"><div class="intro-bar-fill"></div></div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<div id="main">
+  <div class="grid-bg"></div>
+
+  <header>
+    <div class="header-brand">sanjayrkshetty</div>
+    <ul class="header-nav">
+      <li class="active" onclick="scrollTo(0,0)">Overview</li>
+      <li onclick="document.getElementById('p1').scrollIntoView({behavior:'smooth'})">Proposal Engine</li>
+      <li onclick="document.getElementById('p2').scrollIntoView({behavior:'smooth'})">Portfolio</li>
+      <li onclick="document.getElementById('p3').scrollIntoView({behavior:'smooth'})">Best Practices</li>
+    </ul>
+  </header>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Project Demo Showcase · 2026</div>
+    <h1 class="hero-title">Building at the<br>edge of <span>security</span><br>and AI.</h1>
+    <p class="hero-desc">
+      3 production projects spanning agentic pre-sales automation, AI-native portfolio infrastructure, and developer tooling for Claude Code. Built at MIT Bengaluru.
+    </p>
+    <div class="hero-tags">
+      <span class="tag tag-green">⚡ Groq-Powered</span>
+      <span class="tag tag-cyan">Claude API</span>
+      <span class="tag tag-purple">Multi-Agent</span>
+      <span class="tag tag-amber">Cybersecurity</span>
+      <span class="tag tag-green">Next.js Edge</span>
+      <span class="tag tag-cyan">Python</span>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="section-label">Pinned Repositories</div>
+
+    <!-- PROJECT 1: PROPOSAL ENGINE -->
+    <div class="project-card" id="p1">
+      <div class="card-header">
+        <div class="card-title-wrap">
+          <div class="card-dot dot-green"></div>
+          <div>
+            <div class="card-title">Proposal Engine</div>
+            <div class="card-repo">sanjayrkshetty/proposal-engine · Python · 20 commits</div>
+          </div>
+        </div>
+        <span class="card-badge">Agentic AI</span>
+      </div>
+      <div class="card-body">
+        <div class="terminal-panel">
+          <div class="terminal-bar">
+            <div class="t-dot t-dot-red"></div>
+            <div class="t-dot t-dot-yellow"></div>
+            <div class="t-dot t-dot-green"></div>
+            <div class="t-title">bash — proposal-engine</div>
+          </div>
+          <div class="terminal" id="term1"></div>
+        </div>
+        <div class="output-panel">
+          <div class="output-title">Generated Output</div>
+          <div class="proposal-output" id="out1">
+            <div class="prop-section">
+              <div class="prop-label">Client</div>
+              <div class="prop-value">San · Financial Services · SEA · Mid-market</div>
+            </div>
+            <div class="prop-section cyan">
+              <div class="prop-label">Service</div>
+              <div class="prop-value">Network Penetration Test (CTS)</div>
+            </div>
+            <div class="prop-section purple">
+              <div class="prop-label">Discovery Brief</div>
+              <div class="prop-value" style="color:var(--dim)">External and internal network pen test following PTES and OWASP methodology. Identifies exploitable vulnerabilities before attackers do.</div>
+            </div>
+            <div style="margin-top:0.75rem;">
+              <div class="prop-label" style="margin-bottom:0.35rem;">Scope Flags</div>
+              <span class="prop-tag tag-green" style="font-size:0.58rem;padding:0.15rem 0.5rem;border-radius:2px;border:1px solid var(--green);color:var(--green)">PCI DSS Applicable</span>
+              <span class="prop-tag tag-amber" style="font-size:0.58rem;padding:0.15rem 0.5rem;border-radius:2px;border:1px solid var(--amber);color:var(--amber)">500–5000 Endpoints</span>
+              <span class="prop-tag tag-cyan" style="font-size:0.58rem;padding:0.15rem 0.5rem;border-radius:2px;border:1px solid var(--cyan);color:var(--cyan)">DNSSEC Req</span>
+            </div>
+            <div style="margin-top:0.75rem;padding:0.6rem;background:var(--surface);border:1px solid var(--border);border-radius:3px;font-size:0.6rem;color:var(--green)">
+              ✓ proposal.md saved → outputs/2026-05-11_San_NPT/
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-val green">6</span><span class="metric-lbl">Business Units</span></div>
+        <div class="metric"><span class="metric-val green">22</span><span class="metric-lbl">Services</span></div>
+        <div class="metric"><span class="metric-val cyan">5</span><span class="metric-lbl">AI Agents</span></div>
+        <div class="metric"><span class="metric-val purple">0</span><span class="metric-lbl">Manual Effort</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: PORTFOLIO -->
+    <div class="project-card" id="p2">
+      <div class="card-header">
+        <div class="card-title-wrap">
+          <div class="card-dot dot-cyan"></div>
+          <div>
+            <div class="card-title">Portfolio</div>
+            <div class="card-repo">sanjayrkshetty/portfolio · TypeScript · 8 commits</div>
+          </div>
+        </div>
+        <span class="card-badge cyan">Next.js Edge</span>
+      </div>
+      <div class="card-body">
+        <div class="terminal-panel">
+          <div class="terminal-bar">
+            <div class="t-dot t-dot-red"></div>
+            <div class="t-dot t-dot-yellow"></div>
+            <div class="t-dot t-dot-green"></div>
+            <div class="t-title">bash — portfolio</div>
+          </div>
+          <div class="terminal" id="term2"></div>
+        </div>
+        <div class="output-panel">
+          <div class="output-title" style="color:var(--cyan)">API Routes</div>
+          <div class="portfolio-preview" id="out2">
+            <div class="port-route">
+              <span class="method-badge method-get">GET</span>
+              <span style="color:var(--dim)">/api/chat</span>
+              <span style="color:var(--muted);font-size:0.6rem;margin-left:auto">multi-model</span>
+            </div>
+            <div class="port-route">
+              <span class="method-badge method-post">POST</span>
+              <span style="color:var(--dim)">/api/stream</span>
+              <span style="color:var(--muted);font-size:0.6rem;margin-left:auto">edge runtime</span>
+            </div>
+            <div class="port-route">
+              <span class="method-badge method-get">GET</span>
+              <span style="color:var(--dim)">/api/models</span>
+              <span style="color:var(--muted);font-size:0.6rem;margin-left:auto">groq · claude · openrouter</span>
+            </div>
+            <div style="margin-top:0.75rem;">
+              <div class="port-stat"><span class="port-stat-label">Runtime</span><span class="port-stat-value">Edge (Vercel)</span></div>
+              <div class="port-stat"><span class="port-stat-label">Models</span><span class="port-stat-value">Groq / Claude / OpenRouter</span></div>
+              <div class="port-stat"><span class="port-stat-label">Language</span><span class="port-stat-value">TypeScript 81.2%</span></div>
+              <div class="port-stat"><span class="port-stat-label">Framework</span><span class="port-stat-value">Next.js 14 App Router</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-val cyan">3</span><span class="metric-lbl">AI Models</span></div>
+        <div class="metric"><span class="metric-val cyan">Edge</span><span class="metric-lbl">Runtime</span></div>
+        <div class="metric"><span class="metric-val cyan">0ms</span><span class="metric-lbl">Cold Start</span></div>
+        <div class="metric"><span class="metric-val purple">TS</span><span class="metric-lbl">81% TypeScript</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: CLAUDE CODE BEST PRACTICES -->
+    <div class="project-card" id="p3">
+      <div class="card-header">
+        <div class="card-title-wrap">
+          <div class="card-dot dot-purple"></div>
+          <div>
+            <div class="card-title">Claude Code Best Practices</div>
+            <div class="card-repo">sanjayrkshetty/claude-code-best-practices · TypeScript · 11 commits</div>
+          </div>
+        </div>
+        <span class="card-badge purple">Developer Tooling</span>
+      </div>
+      <div class="card-body">
+        <div class="terminal-panel">
+          <div class="terminal-bar">
+            <div class="t-dot t-dot-red"></div>
+            <div class="t-dot t-dot-yellow"></div>
+            <div class="t-dot t-dot-green"></div>
+            <div class="t-title">bash — claude-code-best-practices</div>
+          </div>
+          <div class="terminal" id="term3"></div>
+        </div>
+        <div class="output-panel">
+          <div class="output-title" style="color:var(--purple)">Core Patterns</div>
+          <div class="best-preview" id="out3">
+            <div class="best-rule">
+              <span class="best-rule-num">01</span>
+              <span class="best-rule-text">Always reference exact locations: <code>server/routes/api.js:83</code> not "fix the bug"</span>
+            </div>
+            <div class="best-rule">
+              <span class="best-rule-num">02</span>
+              <span class="best-rule-text">Use <code>CLAUDE.md</code> as persistent context — encode conventions, architecture, what not to touch</span>
+            </div>
+            <div class="best-rule">
+              <span class="best-rule-num">03</span>
+              <span class="best-rule-text">Set <code>max_tokens</code> per function: 300 for replies, 1000 for full scope JSON</span>
+            </div>
+            <div class="best-rule">
+              <span class="best-rule-num">04</span>
+              <span class="best-rule-text">AI failures must degrade gracefully — wrap in <code>try/catch</code>, never cascade</span>
+            </div>
+            <div style="margin-top:0.6rem;padding:0.5rem 0.75rem;background:var(--purple-dim);border:1px solid var(--purple);border-radius:3px;font-size:0.6rem;color:var(--purple)">
+              ✓ readme-generator CLI · auto-git-agent · daily-agent · dashboard
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-val purple">4</span><span class="metric-lbl">Tools Included</span></div>
+        <div class="metric"><span class="metric-val purple">11</span><span class="metric-lbl">Commits</span></div>
+        <div class="metric"><span class="metric-val cyan">TS+JS</span><span class="metric-lbl">85% scripted</span></div>
+        <div class="metric"><span class="metric-val green">Prod</span><span class="metric-lbl">Validated</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-brand">sanjayrkshetty</div>
+    <div class="footer-links">
+      <a href="https://sanjayrkshetty.vercel.app">Portfolio ↗</a>
+      <a href="https://github.com/sanjayrkshetty">GitHub ↗</a>
+      <a href="https://linkedin.com/in/sanjay-r-k-shetty-1048ba245">LinkedIn ↗</a>
+      <a href="https://github.com/sanjayrkshetty/proposal-engine">proposal-engine ↗</a>
+    </div>
+    <div class="footer-copy">© 2026 Sanjay R K Shetty · All rights reserved · Built at MIT Bengaluru</div>
+  </footer>
+</div>
+
+<script>
+const term1Lines = [
+  { cls: 't-prompt', text: '$ python main.py \\' },
+  { cls: 't-cmd', text: '  --service NPT \\' },
+  { cls: 't-cmd', text: '  --client "San" \\' },
+  { cls: 't-cmd', text: '  --industry "Financial Services" \\' },
+  { cls: 't-cmd', text: '  --size "Mid-market" --region SEA' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-info', text: '→ discovery agent running...' },
+  { cls: 't-output', text: '  extracting pain points, regulatory drivers' },
+  { cls: 't-success', text: '  ✓ discovery_brief.md generated' },
+  { cls: 't-info', text: '→ scoping agent running...' },
+  { cls: 't-output', text: '  estimating effort, flagging risks' },
+  { cls: 't-success', text: '  ✓ scope_estimate.md generated' },
+  { cls: 't-info', text: '→ critic agent running...' },
+  { cls: 't-output', text: '  challenging exec summary quality...' },
+  { cls: 't-success', text: '  ✓ proposal.md saved (adversarial pass complete)' },
+  { cls: 't-highlight', text: '  → outputs/2026-05-11_San_NPT/' },
+];
+
+const term2Lines = [
+  { cls: 't-prompt', text: '$ npm run dev' },
+  { cls: 't-output', text: '  ▲ Next.js 14 — edge runtime' },
+  { cls: 't-success', text: '  ✓ compiled in 834ms' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-info', text: '  GET  /                    200 (12ms)' },
+  { cls: 't-info', text: '  POST /api/chat            200 (340ms)' },
+  { cls: 't-info', text: '  GET  /api/models          200 (8ms)' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-prompt', text: '$ curl /api/chat -d model=groq' },
+  { cls: 't-success', text: '  streaming response via groq/llama-3.3-70b...' },
+  { cls: 't-output', text: '  tokens: 847 · latency: 312ms · cached: yes' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-success', text: '  ✓ AI Security Researcher portfolio live' },
+  { cls: 't-highlight', text: '  → sanjayrkshetty.vercel.app' },
+];
+
+const term3Lines = [
+  { cls: 't-prompt', text: '$ cd readme-generator && npm install' },
+  { cls: 't-success', text: '  ✓ packages installed' },
+  { cls: 't-prompt', text: '$ cp profile.example.json profile.json' },
+  { cls: 't-prompt', text: '$ ANTHROPIC_API_KEY=sk-ant-... node generate.js' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-info', text: '  → calling Claude claude-sonnet-4-20250514...' },
+  { cls: 't-output', text: '  → generating profile README from config...' },
+  { cls: 't-success', text: '  ✓ README.md written (892 tokens)' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-prompt', text: '$ cd daily-agent && node agent.js' },
+  { cls: 't-info', text: '  → scanning commits, summarising work...' },
+  { cls: 't-success', text: '  ✓ daily digest committed to repo' },
+  { cls: 't-comment', text: '' },
+  { cls: 't-highlight', text: '  → 4 tools · production-validated patterns' },
+];
+
+function renderTerminal(termId, lines, outputId, delay) {
+  const term = document.getElementById(termId);
+  const out = document.getElementById(outputId);
+  let lineDelay = delay;
+  lines.forEach((line, i) => {
+    const span = document.createElement('span');
+    span.className = 't-line ' + line.cls;
+    span.textContent = line.text;
+    span.style.animationDelay = lineDelay + 'ms';
+    term.appendChild(span);
+    term.appendChild(document.createTextNode('\n'));
+    lineDelay += line.text ? 120 : 60;
+  });
+  setTimeout(() => {
+    if (out) out.classList.add('visible');
+  }, lineDelay + 200);
+}
+
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const card = entry.target;
+      card.classList.add('visible');
+      const id = card.id;
+      if (id === 'p1' && !card._rendered) {
+        card._rendered = true;
+        renderTerminal('term1', term1Lines, 'out1', 300);
+      }
+      if (id === 'p2' && !card._rendered) {
+        card._rendered = true;
+        renderTerminal('term2', term2Lines, 'out2', 300);
+      }
+      if (id === 'p3' && !card._rendered) {
+        card._rendered = true;
+        renderTerminal('term3', term3Lines, 'out3', 300);
+      }
+      cardObserver.unobserve(card);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.project-card').forEach(c => cardObserver.observe(c));
+
+setTimeout(() => {
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('main').classList.add('visible');
+}, 2200);
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.round((scrolled / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+const dot = document.getElementById('cursorDot');
+document.addEventListener('mousemove', (e) => {
+  dot.style.opacity = '1';
+  dot.style.left = (e.clientX - 3) + 'px';
+  dot.style.top = (e.clientY - 3) + 'px';
+});
+document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
+</script>
+</body>
+</html>
