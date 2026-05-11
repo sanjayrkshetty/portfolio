@@ -1,34 +1,278 @@
 {
-  "links": [
-    {
-      "source": "Welcome",
-      "target": "create a link"
-    }
-  ],
   "nodes": [
     {
+      "id": "Q2 2026 Goals",
+      "group": "career"
+    },
+    {
+      "id": "SISA Role",
+      "group": "career"
+    },
+    {
+      "id": "Skills Map",
+      "group": "career"
+    },
+    {
+      "id": "CLAUDE",
+      "group": ""
+    },
+    {
       "id": "Get Your Shit Together",
-      "group": "root"
-    },
-    {
-      "id": "Task",
-      "group": "root"
-    },
-    {
-      "id": "Untitled 1",
-      "group": "root"
-    },
-    {
-      "id": "Untitled",
-      "group": "root"
-    },
-    {
-      "id": "Welcome",
-      "group": "root"
+      "group": ""
     },
     {
       "id": "Untitled",
       "group": "journal"
+    },
+    {
+      "id": "Claude Code Best Practices",
+      "group": "projects"
+    },
+    {
+      "id": "Portfolio",
+      "group": "projects"
+    },
+    {
+      "id": "Presales Automation",
+      "group": "projects"
+    },
+    {
+      "id": "Second Brain",
+      "group": "projects"
+    },
+    {
+      "id": "SISA Proposal Engine",
+      "group": "projects"
+    },
+    {
+      "id": "Cybersecurity Frameworks",
+      "group": "reference"
+    },
+    {
+      "id": "Tech Stack",
+      "group": "reference"
+    },
+    {
+      "id": "Adversarial ML",
+      "group": "research"
+    },
+    {
+      "id": "AI Security Landscape",
+      "group": "research"
+    },
+    {
+      "id": "LLM Security",
+      "group": "research"
+    },
+    {
+      "id": "Task",
+      "group": ""
+    },
+    {
+      "id": "Untitled 1",
+      "group": ""
+    },
+    {
+      "id": "Untitled",
+      "group": ""
+    },
+    {
+      "id": "Welcome",
+      "group": ""
+    }
+  ],
+  "links": [
+    {
+      "source": "Q2 2026 Goals",
+      "target": "Research"
+    },
+    {
+      "source": "Q2 2026 Goals",
+      "target": "SISA Proposal Engine"
+    },
+    {
+      "source": "Q2 2026 Goals",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Q2 2026 Goals",
+      "target": "Skills Map"
+    },
+    {
+      "source": "SISA Role",
+      "target": "LLM Security"
+    },
+    {
+      "source": "SISA Role",
+      "target": "AI Security Landscape"
+    },
+    {
+      "source": "SISA Role",
+      "target": "Presales Automation"
+    },
+    {
+      "source": "SISA Role",
+      "target": "SISA Proposal Engine"
+    },
+    {
+      "source": "SISA Role",
+      "target": "Q2 2026 Goals"
+    },
+    {
+      "source": "SISA Role",
+      "target": "Skills Map"
+    },
+    {
+      "source": "Skills Map",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Skills Map",
+      "target": "Q2 2026 Goals"
+    },
+    {
+      "source": "CLAUDE",
+      "target": "wikilinks"
+    },
+    {
+      "source": "Claude Code Best Practices",
+      "target": "Auto-Git Agent"
+    },
+    {
+      "source": "Claude Code Best Practices",
+      "target": "BrainGraph"
+    },
+    {
+      "source": "Claude Code Best Practices",
+      "target": "Second Brain"
+    },
+    {
+      "source": "Claude Code Best Practices",
+      "target": "Portfolio"
+    },
+    {
+      "source": "Portfolio",
+      "target": "AskMe"
+    },
+    {
+      "source": "Portfolio",
+      "target": "BrainGraph"
+    },
+    {
+      "source": "Portfolio",
+      "target": "Auto-Git Agent"
+    },
+    {
+      "source": "Presales Automation",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Presales Automation",
+      "target": "SISA Proposal Engine"
+    },
+    {
+      "source": "Presales Automation",
+      "target": "Cybersecurity Frameworks"
+    },
+    {
+      "source": "Second Brain",
+      "target": "wikilinks"
+    },
+    {
+      "source": "Second Brain",
+      "target": "Auto-Git Agent"
+    },
+    {
+      "source": "Second Brain",
+      "target": "CLAUDE.md"
+    },
+    {
+      "source": "Second Brain",
+      "target": "Claude Code Best Practices"
+    },
+    {
+      "source": "Second Brain",
+      "target": "Portfolio"
+    },
+    {
+      "source": "SISA Proposal Engine",
+      "target": "Presales Automation"
+    },
+    {
+      "source": "SISA Proposal Engine",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Cybersecurity Frameworks",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Cybersecurity Frameworks",
+      "target": "LLM Security"
+    },
+    {
+      "source": "Tech Stack",
+      "target": "Claude Code Best Practices"
+    },
+    {
+      "source": "Tech Stack",
+      "target": "Second Brain"
+    },
+    {
+      "source": "Adversarial ML",
+      "target": "LLM Security"
+    },
+    {
+      "source": "Adversarial ML",
+      "target": "LLM Security"
+    },
+    {
+      "source": "Adversarial ML",
+      "target": "AI Security Landscape"
+    },
+    {
+      "source": "AI Security Landscape",
+      "target": "Adversarial ML"
+    },
+    {
+      "source": "AI Security Landscape",
+      "target": "LLM Security"
+    },
+    {
+      "source": "AI Security Landscape",
+      "target": "LLM Security"
+    },
+    {
+      "source": "AI Security Landscape",
+      "target": "Adversarial ML"
+    },
+    {
+      "source": "AI Security Landscape",
+      "target": "SISA Role"
+    },
+    {
+      "source": "LLM Security",
+      "target": "Adversarial ML"
+    },
+    {
+      "source": "LLM Security",
+      "target": "AI Security Landscape"
+    },
+    {
+      "source": "LLM Security",
+      "target": "Adversarial ML"
+    },
+    {
+      "source": "LLM Security",
+      "target": "AI Security Landscape"
+    },
+    {
+      "source": "LLM Security",
+      "target": "SISA Role"
+    },
+    {
+      "source": "Welcome",
+      "target": "create a link"
     }
   ]
 }
