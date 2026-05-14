@@ -9,10 +9,10 @@ const ROLES = [
 ];
 
 const STATS = [
-  { value: "3+", label: "years in cybersec" },
-  { value: "4",  label: "repos shipped" },
-  { value: "'26", label: "MIT grad" },
-  { value: "∞",  label: "problems to solve" },
+  { value: "3+",   label: "years in cybersec" },
+  { value: "4",    label: "repos shipped" },
+  { value: "'26",  label: "MIT grad" },
+  { value: "90/90", label: "tests passing" },
 ];
 
 export default function Hero() {
