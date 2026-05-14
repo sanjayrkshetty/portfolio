@@ -4,7 +4,7 @@ const SOCIAL_LINKS = [
   { label: "GitHub", url: "https://github.com/sanjayrkshetty" },
   { label: "LinkedIn", url: "https://linkedin.com/in/sanjay-r-k-shetty-1048ba245" },
   { label: "Twitter", url: "https://twitter.com/sanjayrkshetty" },
-  { label: "Email", url: "mailto:sanjaybehaves@gmail.com" },
+  { label: "Email", url: "mailto:sanjayrkshetty@gmail.com" },
 ];
 
 export default function Footer() {

@@ -21,7 +21,7 @@ Shipped projects:
 Links:
 - GitHub: github.com/sanjayrkshetty
 - LinkedIn: linkedin.com/in/sanjay-r-k-shetty-1048ba245
-- Email: sanjaybehaves@gmail.com
+- Email: sanjayrkshetty@gmail.com
 
 Rules:
 - Be direct and concise (2-4 sentences max per answer)
